@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tclshop.cms.center.mapper.TTestMapper">
+	<!-- <cache eviction="LRU" type="com.tclshop.cms.center.cache.MybatisRedisCache" /> -->
+	<!-- 通用查询结果列 -->
+		<sql id="Base_Column_List">
+			id, title, context, create_time
+		</sql>
+
+		<sql id="condition_sql">
+			<if test="model.title != null and model.title != ''">
+				title LIKE CONCAT(CONCAT('%',#{model.title}), '%')
+			</if>
+			<if test="model.context != null and model.context != ''">
+				and context LIKE CONCAT(CONCAT('%',#{model.context}), '%')
+			</if>
+		</sql>
+
+		<select id="findByPage" resultType="TTest">
+			select
+			<include refid="Base_Column_List" />
+			from t_test
+			<where>
+				<include refid="condition_sql" />
+			</where>
+			order by create_time desc
+		</select>
+</mapper>

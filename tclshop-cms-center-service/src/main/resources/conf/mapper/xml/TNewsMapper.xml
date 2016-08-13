@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tclshop.cms.center.mapper.TNewsMapper">
+
+	<!-- 通用查询结果列-->
+    <!-- 1集团新闻，2产品新闻，3服务新闻，4社区新闻，5第三方观点，6,视频新闻，7新媒体-->
+	<sql id="Base_Column_List">
+		 id, title, shorttitle, source, keywords, description, content, recommend_news recommendNews, pic, type, comment, subjecttype, subjectid, status, recommended, r_pic rPic, r_content rContent, sort, issue_time issueTime, createtime
+	</sql>
+
+    <sql id="News_Page">
+         id, title, shorttitle, keywords, description, pic, type, sort, recommended, status, issue_time issueTime
+    </sql>
+
+    <sql id="condition_sql">
+        <if test="model.type != null and model.type != ''">
+            type = #{model.type}
+        </if>
+        <if test="model.status != null and model.status != ''">
+            and status = #{model.status}
+        </if>
+        <if test="model.recommended != null and model.recommended != ''">
+            and recommended = #{model.recommended}
+        </if>
+        <if test="model.title != null and model.title != ''">
+            and title LIKE CONCAT(CONCAT('%',#{model.title}), '%')
+        </if>
+        <if test="model.content != null and model.content != ''">
+            and content LIKE CONCAT(CONCAT('%',#{model.content}), '%')
+        </if>
+        <if test="model.keywords != null and model.keywords != ''">
+            and keywords LIKE CONCAT(CONCAT('%',#{model.keywords}), '%')
+        </if>
+    </sql>
+
+    <sql id="search_condition_sql">
+        <if test="model.type != null and model.type != ''">
+            type = #{model.type}
+        </if>
+        <if test="model.title != null and model.title != ''">
+            and title LIKE CONCAT(CONCAT('%',#{model.title}), '%')
+        </if>
+        <if test="start != null and start != ''">
+            <![CDATA[
+			    and issue_time >= #{start}
+            ]]>
+        </if>
+        <if test="end != null and end != ''">
+            <![CDATA[
+			    and issue_time <= #{end}
+            ]]>
+        </if>
+    </sql>
+
+    <select id="findByPage" resultType="com.tclshop.cms.center.entity.TNews">
+        select <include refid="News_Page" /> from t_news
+        <where>
+            <include refid="condition_sql" />
+        </where>
+        order by issue_time desc
+    </select>
+
+    <select id="findIndexData" resultType="com.tclshop.cms.center.entity.TNews">
+        select <include refid="Base_Column_List" /> from t_news
+        <where>
+            <include refid="condition_sql" />
+        </where>
+        order by status desc, sort asc, issue_time desc limit 4
+    </select>
+
+    <select id="searchNews" resultType="com.tclshop.cms.center.entity.TNews">
+        select <include refid="News_Page" /> from t_news
+        <where>
+            <include refid="search_condition_sql" />
+        </where>
+        order by issue_time desc
+    </select>
+
+</mapper>

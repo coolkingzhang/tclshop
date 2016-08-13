@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tclshop.cms.center.mapper.TRecruitmentMapper">
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		id, title, company, address, url, type, description, status,
+		content, pic, sort,
+		createtime
+	</sql>
+
+	<sql id="condition_sql">
+        status = 1
+		<if test="model.type != null and model.type != ''">
+			and type=#{model.type}
+		</if>
+        <if test="model.title != null and model.title != ''">
+            and title LIKE CONCAT(CONCAT('%',#{model.title}), '%')
+        </if>
+	</sql>
+
+    <sql id="mgr_condition_sql">
+        <if test="model.type != null and model.type != ''">
+            and type=#{model.type}
+        </if>
+        <if test="model.title != null and model.title != ''">
+            and title LIKE CONCAT(CONCAT('%',#{model.title}), '%')
+        </if>
+    </sql>
+
+    <!-- 职位信息查询 -->
+    <select id="mgrFindByPage" resultType="com.tclshop.cms.center.entity.TRecruitment">
+        select
+        <include refid="Base_Column_List" />
+        from t_recruitment
+        <where>
+            <include refid="mgr_condition_sql" />
+        </where>
+        order by sort asc, createtime desc
+    </select>
+
+	<!-- 职位信息查询 -->
+	<select id="findByPage" resultType="com.tclshop.cms.center.entity.TRecruitment">
+		select
+		<include refid="Base_Column_List" />
+		from t_recruitment
+		<where>
+			<include refid="condition_sql" />
+		</where>
+		order by sort asc, createtime desc
+	</select>
+
+	<!-- 非职位查询 -->
+	<select id="findContentByPage" resultType="com.tclshop.cms.center.entity.TRecruitment">
+		select
+		<include refid="Base_Column_List" />
+		from t_recruitment where type > 1
+		order by sort asc, createtime desc
+	</select>
+</mapper>

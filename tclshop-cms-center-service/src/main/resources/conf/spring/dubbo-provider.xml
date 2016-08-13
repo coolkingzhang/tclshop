@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans.xsd  
+            http://code.alibabatech.com/schema/dubbo  
+            http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- http://www.tuicool.com/articles/NVJbUn -->
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="tclshop-cms-center-service" />
+
+	<!-- 使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" />
+	<dubbo:provider delay="-1" timeout="6000" retries="0" threads="100" />
+	<!-- 用dubbo协议在20871端口暴露服务 -->
+	<!-- <dubbo:protocol name="dubbo" port="20880" host="10.68.244.196" /> -->
+	<dubbo:protocol name="dubbo" port="20882" />
+	<dubbo:service interface="com.tclshop.cms.center.dubbo.TTestSoa" ref="tTestSoa" version="1.0">
+		<dubbo:method name="selectById" timeout="500" retries="2" loadbalance="leastactive" />
+	</dubbo:service>
+
+	<dubbo:service interface="com.tclshop.cms.center.dubbo.TNewsTypeSoa" ref="tNewsTypeSoa" version="1.0" />
+	<dubbo:service interface="com.tclshop.cms.center.dubbo.TNewsSoa" ref="tNewsSoa" version="1.0" />
+	<dubbo:service interface="com.tclshop.cms.center.dubbo.TAboutSoa" ref="tAboutSoa" version="1.0" />
+	<dubbo:service interface="com.tclshop.cms.center.dubbo.TInvestorsSoa" ref="tInvestorsSoa" version="1.0" />
+	<dubbo:service interface="com.tclshop.cms.center.dubbo.TRecruitmentEnterpriseSoa" ref="tRecruitmentEnterpriseSoa" version="1.0" />
+	<dubbo:service interface="com.tclshop.cms.center.dubbo.TRecruitmentSoa" ref="tRecruitmentSoa" version="1.0" />
+	<dubbo:service interface="com.tclshop.cms.center.dubbo.TDevelopmentCateSoa" ref="tDevelopmentCateSoa" version="1.0" />
+	<dubbo:service interface="com.tclshop.cms.center.dubbo.TAdvertisingSoa" ref="tAdvertisingSoa" version="1.0" />
+</beans>  

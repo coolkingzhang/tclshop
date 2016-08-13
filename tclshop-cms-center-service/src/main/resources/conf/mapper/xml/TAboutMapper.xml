@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tclshop.cms.center.mapper.TAboutMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 id, title, name, description, content, pic, r_pic rPic, url, years, type, sort, issue_time issueTime, createtime
+	</sql>
+
+    <sql id="Page_Column_List">
+         id, title, name, description, pic, url, years, sort, type, issue_time issueTime, createtime
+    </sql>
+
+    <sql id="condition_sql">
+        <if test="model.type != null">
+            type = #{model.type}
+        </if>
+        <if test="model.sort != null and model.sort != ''">
+            and sort = #{model.sort}
+        </if>
+        <if test="model.name != null and model.name != ''">
+            and name LIKE CONCAT(CONCAT('%',#{model.name}), '%')
+        </if>
+        <if test="model.title != null and model.title != ''">
+            and title LIKE CONCAT(CONCAT('%',#{model.title}), '%')
+        </if>
+        <if test="model.description != null and model.description != ''">
+            and description LIKE CONCAT(CONCAT('%',#{model.description}), '%')
+        </if>
+        <if test="model.years != null and model.years != ''">
+            and years = #{model.years}
+        </if>
+    </sql>
+
+    <!-- 发展历程判断 -->
+    <sql id="develop_condition_sql">
+        <if test="model.type != null">
+            type = #{model.type}
+        </if>
+        <if test="model.name != null and model.name != ''">
+            and name = #{model.name}
+        </if>
+        <if test="model.years != null and model.years != ''">
+            and years = #{model.years}
+        </if>
+        <![CDATA[
+			and sort < 4
+        ]]>
+    </sql>
+
+    <select id="findByPage" resultType="com.tclshop.cms.center.entity.TAbout">
+        select <include refid="Page_Column_List" /> from t_about
+        <where>
+            <include refid="condition_sql" />
+        </where>
+        order by years desc,  sort ASC, issue_time desc, createtime desc
+    </select>
+
+    <select id="findDevelopData" resultType="com.tclshop.cms.center.entity.TAbout">
+        select <include refid="Base_Column_List" /> from t_about
+        <where>
+            <include refid="develop_condition_sql" />
+        </where>
+        ORDER BY years DESC, sort ASC;
+    </select>
+
+    <!-- 企业公民活动主页显示（type=11）， 华萌基金主页显示（type=12），志愿者风采主页显示（type=13） -->
+    <select id="findIndexData" resultType="com.tclshop.cms.center.entity.TAbout">
+        select <include refid="Base_Column_List" /> from t_about
+        <where>
+            <include refid="condition_sql" />
+        </where>
+        order by years DESC, sort asc, issue_time desc, createtime desc limit #{num}
+    </select>
+
+    <select id="findAll" resultType="com.tclshop.cms.center.entity.TAbout">
+        select <include refid="Base_Column_List" /> from t_about
+        <where>
+            <include refid="condition_sql" />
+        </where>
+        order by years DESC, sort asc, issue_time desc, createtime desc
+    </select>
+
+</mapper>

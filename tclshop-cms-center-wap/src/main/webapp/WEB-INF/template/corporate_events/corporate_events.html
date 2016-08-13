@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>企业公民活动</title>
+
+    <!-- 独立样式文件 -->
+    <link rel="stylesheet" href="../static/common/css/style.css" />
+    <link rel="stylesheet" href="../static/common/css/home.css" />
+
+    <!-- 引入公共头部 -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../static/kuyu/common/css/core/widget/amazeui.swiper.min.css">
+    <link rel="stylesheet" href="../static/kuyu/common/css/core/common.css" />
+    <link rel="stylesheet" href="../static/kuyu/common/css/core/main.css" />
+    <link rel="stylesheet" href="../static/kuyu/common/css/core/header.css" />
+    <link rel="stylesheet" href="../static/kuyu/common/css/core/footer.css" />
+
+    <script type="text/javascript" src="../static/kuyu/common/js/core/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/kuyu/common/js/core/jquery.lazyload.min.js"></script>
+
+    <script type="text/javascript" src="../static/kuyu/common/js/core/swiper3.1.0.min.js"></script>
+    <script type="text/javascript" src="../static/kuyu/common/js/core/init.js"></script>
+    <script type="text/javascript" src="../static/kuyu/common/js/core/index.js"></script>
+
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+
+    <!-- 引入导航 -->
+    <!-- <%@ page language="java" contentType="text/html; charset=utf-8"
+        pageEncoding="utf-8"%>
+        <%@	taglib prefix="aebiz" tagdir="../tags"%>
+            <%@	taglib prefix="aebizKuyu" tagdir="../tags/kuyu"%>
+                <%@page import="com.aebiz.b2b2c.customermgr.customer.vo.CustomerModel"%>
+                    <%@page import="com.aebiz.b2b2c.baseframework.utils.LoginUserHelper"%>
+                        <%@page import="com.aebiz.b2b2c.baseframework.utils.StringUtil"%>
+                            <%@page import="org.apache.shiro.SecurityUtils"%>
+                                <% String customerName = ""; if(!StringUtil.isEmpty(LoginUserHelper.getCustomerLoginUserUuid())){ CustomerModel c = (CustomerModel)LoginUserHelper.getCustomerLoginUserModel(); if(c != null) customerName = c.getCustomerName(); } //获取是否需要进行同步验证 为null
+    则需要验证同步登陆 add by dufy Object isSysVerify = SecurityUtils.getSubject().getSession().getAttribute("isSysVerify"); %> -->
+    <script>
+        //	监测代码 start
+        try {
+            !(function(a, b, c, d, e, f) {
+                var g = "",
+                    h = a.sessionStorage,
+                    i = "__admaster_ta_param__",
+                    j = "tmDataLayer" !== d ?
+                    "&dl=" + d :
+                    "";
+                if (a[f] = {}, a[d] = a[d] || [], a[d].push({
+                        startTime: +new Date,
+                        event: "tm.js"
+                    }), h) {
+                    var k = a.location.search,
+                        l = new RegExp("[?&]" + i + "=(.*?)(&|#|$)").exec(k) || [];
+                    l[1] && h.setItem(i, l[1]),
+                        l = h.getItem(i),
+                        l && (g = "&p=" + l + "&t=" + +new Date)
+                }
+                var m = b.createElement(c),
+                    n = b.getElementsByTagName(c)[0];
+                m.src = "//tag.cdnmaster.com/tmjs/tm.js?id=" + e + j + g,
+                    m.async = !0,
+                    n.parentNode.insertBefore(m, n)
+            })(window, document, "script", "tmDataLayer", "TM-I92QS0", "admaster_tm");
+        } catch (e) {
+            console.log(e);
+        }
+        // 监测代码  end
+    </script>
+    <!-- 百度统计 -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f58b3eb7bcf42dabbbfc2d85c7b1f5f2";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <!-- Top html start -->
+    <header class="header bor-bott">
+        <!-- <%=request.getServerName() +" : "+ request.getServerPort() + request.getContextPath() %> -->
+        <a href="http://">
+            <img class="fl logo" src="../static/kuyu/common/img/logo.png" />
+        </a>
+        <div class="fr w80">
+            <a href="javascript:void(0)">
+                <div class="nav">&#xe633;</div>
+            </a>
+            <a href="javascript:window.location.href='../cart/cartshowKuyu';">
+                <div class="cart">&#xe600;</div>
+            </a>
+            <a href="javascript:goSearch();">
+                <div class="search">&#xe62e;</div>
+            </a>
+            <script>
+                function goSearch() {
+                    var url = window.location.href;
+                    var base = url.split('?');
+                    var baseurl = base[0];
+                    var goSearchUrl;
+                    var searchUrl;
+                    // var port = <%=request.getServerPort()%>;
+                    if (port != 80) {
+                        // goSearchUrl = "http://<%=request.getServerName() +": "+ request.getServerPort() + request.getContextPath() %>/front/productList/toSearchKuyu";
+                        // searchUrl = "http://<%=request.getServerName() +": "+ request.getServerPort() + request.getContextPath() %>/front/productList/searchProductKuyu";
+                    } else {
+                        goSearchUrl = "http://<%=request.getServerName() + request.getContextPath() %>/front/productList/toSearchKuyu";
+                        searchUrl = "http://<%=request.getServerName() + request.getContextPath() %>/front/productList/searchProductKuyu";
+                    }
+                    if (searchUrl != baseurl && goSearchUrl != baseurl) {
+                        window.location.href = goSearchUrl + "?backurl=" + url;
+                    } else {
+                        window.location.href = goSearchUrl + "?" + base[1];
+                    }
+
+                }
+
+                function backtopage() {
+                    var url = window.location.href;
+                    // <%=request.getServerName() +": "+ request.getServerPort() + request.getContextPath() %>
+                    window.location.href = "http:// /front/productList/toSearchKuyu?backurl=" + url;
+                }
+            </script>
+        </div>
+    </header>
+    <div id="headermenu" class="headermenu">
+        <div class="header">
+            <div class="img-c">
+                <!-- <%=request.getServerName() +" : "+ request.getServerPort() + request.getContextPath() %> -->
+                <a href="http://"><img class="fl logo" src="../static/kuyu/common/img/logo.png" /></a>
+            </div>
+            <div id="closemenu" class="close">&#xe60f;</div>
+            <div class="navmenu">
+                <ul>
+                    <li class="bor-bott" style="cursor:pointer;" onclick="window.location.href='../tclcustomer/toCustomerIndex';">
+                        <span class="navicon fl">&#xe627;</span>
+                        <span class="txt fl">个人中心</span>
+                    </li>
+                    <li class="bor-bott y_slidenav">
+                        <span class="navicon fl">&#xe633;</span>
+                        <span class="txt fl">产品分类</span>
+                        <span class="arraw fr">&#xe608;</span>
+                    </li>
+                    <li class="zhidden">
+                        <ul class="sub">
+                            <li>
+                                <a href="../frontback/platDfFront/toChannelKuyu/100b389129474b29966fbcbcae80bbca">
+                                    <span class="navicon fl">&#xe610;</span>
+                                    <span class="txt fl">电视</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../frontback/platDfFront/toChannelKuyu/e6a8905919754222901f97193ec2fd9a">
+                                    <span class="navicon fl">&#xe620;</span>
+                                    <span class="txt fl">手机</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../frontback/platDfFront/toChannelKuyu/d1e7f190c7a24af5847a362f0c7e1903">
+                                    <span class="navicon fl">&#xe61e;</span>
+                                    <span class="txt fl">空调</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../frontback/platDfFront/toChannelKuyu/33926b5759eb4daab650c713fe2227fb">
+                                    <span class="navicon fl">&#xe616;</span>
+                                    <span class="txt fl">冰箱</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../frontback/platDfFront/toChannelKuyu/84b404ef5b73405a8a1940f4d6222e1c">
+                                    <span class="navicon fl">&#xe621;</span>
+                                    <span class="txt fl">洗衣机</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../frontback/platDfFront/toChannelKuyu/28866f5e0825457e91b3301ea54c103f">
+                                    <span class="navicon fl">&#xe637;</span>
+                                    <span class="txt fl">健康电器</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="bor-bott">
+                        <a href="http://ym.tcl.com/services/pid" target="_blank">
+                            <span class="navicon fl">&#xe60a;</span>
+                            <span class="txt fl">服务</span>
+                        </a>
+                    </li>
+
+                    <li class="bor-bott">
+                        <a href="http://fans.tcl.com" target="_blank">
+                            <span class="navicon fl">&#xe618;</span>
+                            <span class="txt fl">铁粉社区</span>
+                        </a>
+                    </li>
+                    <li class="bor-bott">
+                        <a href="http://m.tcl.com/tcldealer/dealer/toLogin">
+                            <span class="navicon fl">&#xe617;</span>
+                            <span class="txt fl">经销商之家</span>
+                        </a>
+                    </li>
+                    <li class="bor-bott">
+                        <a href="http://hy.tcl.com">
+                            <span class="navicon fl">&#xe654;</span>
+                            <span class="txt fl">积分兑换</span>
+                        </a>
+                    </li>
+                    <li class="bor-bott" onclick="backtopage()">
+                        <span class="navicon fl">&#xe62e;</span>
+                        <span class="txt fl">搜索</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 判断是否已经登录，同步登录用于判断 -->
+    <input type="hidden" name="userloginname" id="userloginname" value="<%=customerName%>" />
+    <input type="hidden" name="isRefresh" id="isRefresh" value="<%=isSysVerify %>" />
+    <!--右侧返回顶部、在线客服-->
+    <nav class="y_rightnav">
+        <a href="http://p.qiao.baidu.com//im/index?siteid=9306409&ucid=6393691" class="y_item" id="main_server">&#xe649;</a>
+        <a href="#" class="y_item y_totop">
+            <span>&#xe639;</span>
+        </a>
+    </nav>
+    <!--右侧返回顶部、在线客服 end-->
+
+    <script type="text/javascript" src="../static/kuyu/common/js/core/sso.min.js"></script>
+    <!-- 同步登录 -->
+    <script>
+        $(function() {
+            function ssoOK(data) { //登录成功
+                if (null != data) {
+                    if ("1" == data.status) { //验证成功
+                        var userloginname = $('#userloginname').val();
+                        if (!userloginname.length > 0) {
+                            window.location.reload();
+                        }
+
+                    }
+                }
+
+            }
+
+            //同步登录
+            if ($("#isRefresh").val() == "null") {
+                $(window).bind("load", function(e) {
+                    sso.init({
+                        clientId: "<aebiz:showTitle titleId='tclclouds.appId'></aebiz:showTitle>",
+                        jsonpURL: "<aebiz:showTitle titleId='tclclouds.jsonpURL'></aebiz:showTitle>",
+                        localValidateUrl: "../tclcustomer/syncLogin",
+                        callbacks: {
+                            ssoOK: ssoOK
+                        }
+                    });
+                });
+            }
+
+        });
+    </script>
+
+    <!-- 检测代码 -->
+    <!-- <script type="text/javascript">
+        var _py = _py || [];
+        _py.push(['a', 'PJs.6W.U26VcyIJ5Ykyuq0gqgCrM_']);
+        _py.push(['domain', 'stats.ipinyou.com']);
+        _py.push(['e', '']); -
+
+        function(d) {
+            var s = d.createElement('script'),
+                e = d.body.getElementsByTagName('script')[0];
+            e.parentNode.insertBefore(s, e),
+                f = 'https:' == location.protocol;
+            s.src = (f ?
+                'https' :
+                'http') + '://' + (f ?
+                'fm.ipinyou.com' :
+                'fm.p0y.cn') + '/j/adv.js';
+        }(document);
+    </script>
+    <noscript><img src="//stats.ipinyou.com/adv.gif?a=PJs.6W.U26VcyIJ5Ykyuq0gqgCrM_&e=" style="display:none;" /></noscript> -->
+    <!-- 检测代码 end -->
+
+</head>
+
+<body>
+
+    <!-- main start -->
+    <div id="main" class="main">
+
+        <!-- 分公司慈善公益活动 -->
+        <div class="layout cut_space">
+            <h3 class="hm_title y_w92 bor-bott">分公司慈善公益活动</h3>
+            <div class="pictext_list">
+                <dl class="pictext_cell y_w92 bor-bott">
+                    <dd class="pictext_cell_left">
+                        <a href="">
+                            <img src="../static/common/imgs/xx01.jpg" alt="" width="100%" height="100%">
+                        </a>
+                    </dd>
+                    <dd class="pictext_cell_right fs28 color_333">
+                        <a href="javascript:void(0);">
+                            <p class="pictext_title">没有电没有信号，他在震区守护50多名藏族孩子</p>
+                        </a>
+                        <p class="abreast fs20">
+                            <span class="abreast_text">华萌基金</span> 2016.07.27
+                        </p>
+                    </dd>
+                </dl>
+            </div>
+            <a href="javascript:void(0);">
+                <div class="get_moer fs20 bor-bott">
+                    查看更多<span class="icf">&#xe608;</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- 华萌基金 -->
+        <div class="layout cut_space">
+            <h3 class="hm_title y_w92 bor-bott">华萌基金</h3>
+            <ul class="y_w92 text_list bor-bott">
+                <li>
+                    <p class="abreast text_cell">
+                        <span class="abreast_text text_title fs28 color_333">潜心培养人才 华萌点击梦想--第XXXXXX</span> 2016.07.27
+                    </p>
+                </li>
+            </ul>
+            <a href="javascript:void(0);">
+                <div class="get_moer fs20 bor-bott">
+                    查看更多<span class="icf">&#xe608;</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- 自愿者风采 -->
+        <div class="layout cut_space">
+            <h3 class="hm_title y_w92 bor-bott">自愿者风采</h3>
+            <ul class="y_w92 text_list bor-bott">
+                <li>
+                    <p class="abreast text_cell">
+                        <span class="abreast_text text_title fs28 color_333">TCL多媒体：志愿者服务队</span> 2016.07.27
+                    </p>
+                </li>
+            </ul>
+            <a href="javascript:void(0);">
+                <div class="get_moer fs20 bor-bott">
+                    查看更多<span class="icf">&#xe608;</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- 伪数据 -->
+        <script type="text/javascript" src="../static/core/react.min.js"></script>
+        <script type="text/javascript" src="../static/core/react-dom.min.js"></script>
+        <script type="text/babel" src="../static/common/js/getData.js"></script>
+
+        <!-- footer start -->
+        <footer id="footer">
+            <div class="footer-call">
+                <span>服务热线：4008123456</span>
+                <a href="tel:4008123456">
+                    <img src="../static/kuyu/common/img/footer-phone.jpg" class="phone"></a>
+                <span>关注我们：</span>
+                <a href="http://weibo.com/tcljituan?topnav=1&wvr=5&topsug=1">
+                    <img src="../static/kuyu/common/img/footer-wb.jpg" class="wb"></a>
+                <!-- 	<a href="#"><img src="../static/kuyu/common/img/footer-wx.jpg" class="wx"></a> -->
+            </div>
+            <ul class="footer-about cc">
+                <li>
+                    <a href="http://news.tcl.com/Mobile.php/About.html">关于TCL</a>
+                </li>
+                <li>
+                    <a href="http://news.tcl.com/Mobile.php/About/about_responsibility.html">社会责任</a>
+                </li>
+                <li>
+                    <a href="http://news.tcl.com/Mobile.php/Investors.html">投资者关系</a>
+                </li>
+                <li>
+                    <a href="http://news.tcl.com/Mobile.php/News.html">新闻中心</a>
+                </li>
+                <li>
+                    <a href="http://news.tcl.com/Mobile.php/Recruitment.html">人才招聘</a>
+                </li>
+                <li>
+                    <a href="#">使用条款</a>
+                </li>
+                <li>
+                    <a href="http://news.tcl.com/Mobile.php/Public/privacy.html">隐私保护.</a>
+                </li>
+                <li>
+                    <a href="http://news.tcl.com/Mobile.php/Public/law.html">法律申明</a>
+                </li>
+            </ul>
+            <div class="footer-copyright">
+                <img alt="" src="../static/kuyu/common/img/footer-logo.jpg" class="footer-logo">
+                <div class="copyright-content">
+                    <p>&copy;2010-2011 TCL CORPORATION All Rights Reserved.
+                    </p>
+                    <p>使用条款 TCL集团股份有限公司版权所有 粤ICP备05040863号</p>
+                </div>
+            </div>
+        </footer>
+        <!-- footer end -->
+    </div>
+</body>
+
+</html>

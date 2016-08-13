@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tclshop.cms.center.mapper.TEmailRecommendedMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 id, title, news1_title, news1_img, news1_url, news1_description, news1_issue_time, news2_title, news2_img, news2_url, news2_description, news2_issue_time, news3_title, news3_issue_time, news3_description, news3_url, news3_comment1, news3_comment2, news3_comment3, news3_comment4, news3_comment5, news3_comment6, news3_author1, news3_author2, news3_author3, news3_author4, news3_author5, news3_author6, news3_img, state, createtime
+	</sql>
+
+</mapper>
