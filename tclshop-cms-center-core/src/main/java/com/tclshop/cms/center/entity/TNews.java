@@ -67,11 +67,11 @@ public class TNews implements Serializable {
 
 	/**  */
 	@TableField(value = "r_pic")
-	private String rPic;
+	private String rpic;
 
 	/**  */
 	@TableField(value = "r_content")
-	private String rContent;
+	private String rcontent;
 
 	/**  */
 	private Integer sort;
@@ -227,19 +227,20 @@ public class TNews implements Serializable {
 		this.createtime = createtime;
 	}
 
-	public String getrPic() {
-		return rPic;
+	public String getRpic() {
+		return rpic;
 	}
 
-	public void setrPic(String rPic) {
-		this.rPic = rPic;
+	public void setRpic(String rpic) {
+		this.rpic = rpic;
 	}
 
-	public String getrContent() {
-		return rContent;
+	public String getRcontent() {
+		return rcontent;
 	}
 
-	public void setrContent(String rContent) {
-		this.rContent = rContent;
+	public void setRcontent(String rcontent) {
+		this.rcontent = rcontent;
 	}
+
 }

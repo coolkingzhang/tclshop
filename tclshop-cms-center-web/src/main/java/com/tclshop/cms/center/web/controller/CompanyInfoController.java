@@ -44,12 +44,12 @@ public class CompanyInfoController {
     public String slipPath(Model model, @RequestParam(value = "type", required = false) Integer type) {
         //type =1 关于tcl简介    type = 2 卵化中心简介   type = 3 tcl简介 
         model.addAttribute("page", type);
-        return "companyInfo/global_intro";
+        return "company/static";
     }
 
     @RequestMapping(value = "/developList", method = RequestMethod.GET)
     public String developList() {
-        return "companyInfo/global_list";
+        return "company/list";
     }
 
     /*
@@ -58,23 +58,17 @@ public class CompanyInfoController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
         try {
-            TAbout tAbout = new TAbout();
-            tAbout.setType(3);
-            tAbout.setName("1");
             model.addAttribute("pictureFont", commonInterface.findPictureFont(tAdvertisingSoa, TAdvertisingEnum.abouttcl.getValue(), 1, 1));// 关于tcl头图
             model.addAttribute("speech", findList(TAboutEnum.CEO.getValue(), null, 1));// 董事长致辞
-            model.addAttribute("manageTeam", findList(TAboutEnum.managementTeam.getValue(), null, 7));// 管理团队
-            model.addAttribute("course1", findList(TAboutEnum.developmentCourse.getValue(), 1981, 1));// 发展历程
-            model.addAttribute("course2", findList(TAboutEnum.developmentCourse.getValue(), 2012, 1));// 发展历程
-            model.addAttribute("course3", tAboutSoa.findIndexData(tAbout, 1));// 发展历程
-            TAbout tAbout1 = new TAbout();
-            tAbout1.setType(18);
-            model.addAttribute("honor", tAboutSoa.findIndexData(tAbout1, 3));// 企业荣誉
+            model.addAttribute("manageTeam", findList(TAboutEnum.managementTeam.getValue(), null, 10));// 管理团队
+            TAbout about_hon = new TAbout();
+            about_hon.setType(TAboutEnum.compenyHonor.getValue());
+            model.addAttribute("honor", tAboutSoa.findIndexData(about_hon, 3));// 企业荣誉
         } catch (Exception e) {
             model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "companyInfo/about_tcl";
+        return "company/index";
     }
 
     /*
@@ -82,7 +76,7 @@ public class CompanyInfoController {
      */
     @RequestMapping(value = "/companyInfoArch", method = RequestMethod.GET)
     public String companyInfoArch() {
-        return "companyInfo/co_architecture";
+        return "company/structure";
     }
 
     /*
@@ -96,11 +90,11 @@ public class CompanyInfoController {
             model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "companyInfo/technology_development";
+        return "company/technology";
     }
-
+    
     /*
-     * 发展历程按年份查找列表接口
+     * 查找列表接口
      */
     @RequestMapping(value = "/companyInfoList", method = RequestMethod.GET)
     public List<TAbout> findList(Integer type, Integer years, Integer size) throws Exception {
@@ -123,7 +117,7 @@ public class CompanyInfoController {
     ) {
         TAbout tAbout = new TAbout();
         try {
-            if (type == 18) {//企业荣誉
+            if (type == TAboutEnum.compenyHonor.getValue()) {//企业荣誉
                 tAbout.setType(type);
                 List<TAbout> list = tAboutSoa.findAll(tAbout);
                 model.addAttribute("result", list);
@@ -135,36 +129,36 @@ public class CompanyInfoController {
                 List<TAbout> list2 = tAboutSoa.findAll(tAbout);
                 tAbout.setSort(3);//专利奖
                 List<TAbout> list3 = tAboutSoa.findAll(tAbout);
-                model.addAttribute("list1", list1);
+                model.addAttribute("result", list1);
                 model.addAttribute("list2", list2);
                 model.addAttribute("list3", list3);
             }
         } catch (Exception e) {
-//            model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "companyInfo/global_details";
+        return "company/details";
     }
 
     /*
      * 发展历程列表ajax接口
      */
     @ResponseBody
-    @RequestMapping(value = "/companyInfoCourseList", produces = "application/json", method = RequestMethod.GET)
-    private RestApi findCourseList(
+    @RequestMapping(value = "/companyInfoCourseList",  produces = "application/json",  method = RequestMethod.GET)
+    public RestApi findCourseList(
             @RequestParam(value = "type", required = true) Integer type,
-            @RequestParam(value = "name", required = false) String name
+            @RequestParam(value = "name", required = true) String name
     ) {
         RestApi result = new RestApi();
         TAbout tAbout = new TAbout();
         Map<String, Object> map = new HashMap<>();
+        List<TAbout> data = null;
         try {
             map.put("pictureFont", commonInterface.findPictureFont(// 发展历程的头图
                     tAdvertisingSoa, TAdvertisingEnum.develop.getValue(), 1, 1));
             map.put("courseType", tDevelopmentCateSoa.findAll());// 发展历程规模类型数据
             tAbout.setType(type);
             tAbout.setName(name);
-            List<TAbout> data = tAboutSoa.findDevelopData(tAbout);
+            data = tAboutSoa.findAll(tAbout);
             map.put("data", data);
             result.setCode(200);
             result.setData(map);
@@ -172,7 +166,7 @@ public class CompanyInfoController {
         } catch (Exception e) {
             result.setCode(500);
         }
-        return result;
+       return result;
     }
 
     /*
@@ -204,9 +198,8 @@ public class CompanyInfoController {
                 model.addAttribute("result", tAboutSoa.findIndexData(tAbout, 1));
             }
         } catch (Exception e) {
-//            model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "companyInfo/global_details";
+        return "company/details";
     }
 }

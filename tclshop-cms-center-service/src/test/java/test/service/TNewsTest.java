@@ -4,15 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.tclshop.cms.center.entity.TNews;
 import com.tclshop.cms.center.service.ITNewsService;
-import com.tclshop.utils.DateUtil;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,12 +25,12 @@ public class TNewsTest extends BaseTest {
         TNews tNews = new TNews();
 //        tNews.setStatus(1);
 //        tNews.setType(6);
-        tNews.setId(1768);
+        tNews.setId(1824);
         Page<TNews> page = itNewsService.findByPage(tNews, 0, 1);
-        List<TNews> records = page.getRecords();
-        TNews tNews1 = records.get(0);
 
-        logger.info(JSON.toJSONString(page));
+        List<TNews> indexData = itNewsService.findIndexData(tNews);
+
+        logger.info(JSON.toJSONString(indexData));
         System.out.println("=================");
 //        Page<TNews> vpage = itNewsService.findVideoNewsByPage(tNews, 1, 2);
 //        logger.info(JSON.toJSONString(vpage));
@@ -74,7 +70,7 @@ public class TNewsTest extends BaseTest {
         t.setCreatetime(11111);
         t.setIssueTime(123);
         t.setSubjecttype(1);
-        t.setrContent("1");
+        t.setRcontent("1");
         boolean insert = itNewsService.insert(t);
         String result = insert ? "=== insert Succeed ===" : "=== insert Faild ===";
         logger.info(result);
@@ -87,7 +83,7 @@ public class TNewsTest extends BaseTest {
         List<TNews> records = page.getRecords();
         TNews tNews = records.get(0);
         tNews.setTitle(tNews.getTitle() + "_Ad_");
-        tNews.setrContent("1");
+        tNews.setRcontent("1");
         boolean update = itNewsService.updateById(tNews);
         String result = update ? "=== update Succeed ===" : "=== update Faild ===";
         logger.info(result);
@@ -98,7 +94,7 @@ public class TNewsTest extends BaseTest {
         TNews t = new TNews();
         t.setId(1778);
         t.setTitle("=======");
-        boolean update = itNewsService.update(t,t);
+        boolean update = itNewsService.update(t, t);
         String result = update ? "=== update Succeed ===" : "=== update Faild ===";
         logger.info(result);
     }
@@ -110,7 +106,7 @@ public class TNewsTest extends BaseTest {
         Page<TNews> page = itNewsService.findByPage(t, 1, 5);
         List<TNews> records = page.getRecords();
         TNews tNews = records.get(0);
-        idList.add((long)tNews.getId());
+        idList.add((long) tNews.getId());
         boolean delete = itNewsService.deleteBatchIds(idList);
         String result = delete ? "=== delete Succeed <id = " + tNews.getId() + " >===" : "=== delete Faild ===";
         logger.info(result);

@@ -18,6 +18,8 @@ public interface TNewsMapper extends AutoMapper<TNews> {
 
     List<TNews> findIndexData(@Param("model") TNews tNews);
 
+    List<TNews> indexData(@Param("size") int size);
+
     List<TNews> searchNews(Page<TNews> page, @Param("model") TNews tNews, @Param("start") String starttime, @Param("end") String endtime);
 
 }

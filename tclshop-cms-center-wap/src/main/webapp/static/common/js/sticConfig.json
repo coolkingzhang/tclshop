@@ -1,25 +1,29 @@
 {
     "qiyelinian": [{
         "urlSrc": "javascript:void(0);",
-        "imgSrc": "../static/common/imgs/banner01.jpg",
+        "imgSrc": "../static/common/images/QYLN-yiyeyuanjing.png",
         "altText": ""
     }, {
         "urlSrc": "javascript:void(0);",
-        "imgSrc": "../static/common/imgs/banner01.jpg",
+        "imgSrc": "../static/common/images/QYLN-qiyeshiming.png",
         "altText": ""
     }, {
         "urlSrc": "javascript:void(0);",
-        "imgSrc": "../static/common/imgs/banner01.jpg",
+        "imgSrc": "../static/common/images/QYLN-yiyejingshen.png",
         "altText": ""
     }, {
         "urlSrc": "javascript:void(0);",
-        "imgSrc": "../static/common/imgs/banner01.jpg",
+        "imgSrc": "../static/common/images/QYLN-qiyejiazhiguan.png",
+        "altText": ""
+    }, {
+        "urlSrc": "javascript:void(0);",
+        "imgSrc": "../static/common/images/QYLN-jingyingcelue.png",
         "altText": ""
     }],
     "jishuyanfa": {
         "cxtixi": {
             "headImg": {
-                "imgSrc": "../static/common/imgs/banner01.jpg",
+                "imgSrc": "../static/common/images/技术研发创新体系.png",
                 "altText": ""
             },
             "content": {
@@ -36,7 +40,7 @@
         }],
         "fuhuazhongxin": {
             "headImg": {
-                "imgSrc": "../static/common/imgs/banner01.jpg",
+                "imgSrc": "",
                 "altText": ""
             },
             "content": [{

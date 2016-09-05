@@ -2,7 +2,7 @@ package com.tclshop.cms.center.enums;
 
 public enum TAdvertisingEnum {
 
-    // 1 企业信息 2 关于TCL 3 发展历程 4 技术研发 5 新闻焦点 6 投资者关系 7社会责任 8 人才招聘
+    // 1 企业信息 2 关于TCL 3 发展历程 4 技术研发 5 新闻焦点 6 投资者关系 7社会责任 8 人才招聘 9 首页
     company("企业信息焦点图", 1),
     abouttcl("关于TCL焦点图", 2),
     develop("发展历程焦点图", 3),
@@ -10,7 +10,8 @@ public enum TAdvertisingEnum {
     news("新闻集点图", 5),
     investor("投资者关系", 6),
     social("社会责任", 7),
-    job("人才招聘", 8);
+    job("人才招聘", 8),
+    index("首页", 9);
 
     /**
      * 描述

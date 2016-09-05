@@ -132,7 +132,7 @@
     vertical-align: middle;
     cursor: pointer;
     color: #333333;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    /* text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); */
     /*  background-color: #f5f5f5; */
     /* background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
@@ -181,7 +181,7 @@ label, input, button, select, textarea {
     position: relative;
     margin-bottom: 0;
     font-size: 14px;
-    vertical-align: top;
+    vertical-align: middle;
     /* -webkit-border-radius: 0 3px 3px 0;
     -moz-border-radius: 0 3px 3px 0;
     border-radius: 0 3px 3px 0; */
@@ -200,7 +200,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .input-append input[type="text"]{
 	height:40px;
 	line-height:30px;
-	margin-top:13px;
+	
 	width:200px;
 	padding-left:5px;
 	
@@ -211,7 +211,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 	display:inline;
 }
 .input-append .btn{
-	margin-top:13px;
+	
 	height:40px;
 	border-left:none;
 	margin-left:-1px;
@@ -230,4 +230,13 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 	background:#ff2424;
 }
     
-    
+@media (max-height:900px) and (max-width:1440px){
+ .input-append input[type="text"]{
+    width:170px;
+    line-height: 25px;
+ }
+
+.input-append input[type="text"].input-large{
+    width:350px;
+}   
+}    

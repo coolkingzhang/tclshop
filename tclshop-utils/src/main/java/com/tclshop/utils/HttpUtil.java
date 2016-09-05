@@ -28,7 +28,7 @@ public class HttpUtil {
 			// 打开和URL之间的连接
 			URLConnection connection = realUrl.openConnection();
 			// 设置通用的请求属性
-			connection.setConnectTimeout(10000);  
+			connection.setConnectTimeout(10000);
 			connection.setReadTimeout(10000);
 			connection.setRequestProperty("accept", "*/*");
 			connection.setRequestProperty("connection", "Keep-Alive");
@@ -38,14 +38,14 @@ public class HttpUtil {
 			// 获取所有响应头字段
 			Map<String, List<String>> map = connection.getHeaderFields();
 			// 遍历所有的响应头字段
-//			for (String key : map.keySet()) {
-//				// System.out.println(key + "--->" + map.get(key));
-//			}
+			// for (String key : map.keySet()) {
+			// // System.out.println(key + "--->" + map.get(key));
+			// }
 			// 定义 BufferedReader输入流来读取URL的响应
 			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String line;
 			while ((line = in.readLine()) != null) {
-				result += line;
+				result = result + "\n" + line;
 			}
 		} catch (Exception e) {
 			System.out.println("发送GET请求出现异常！" + e);
@@ -88,7 +88,7 @@ public class HttpUtil {
 			// 发送POST请求必须设置如下两行
 			connection.setDoOutput(true);
 			connection.setDoInput(true);
-			connection.setConnectTimeout(10000);  
+			connection.setConnectTimeout(10000);
 			connection.setReadTimeout(10000);
 			// 获取URLConnection对象对应的输出流
 			out = new PrintWriter(connection.getOutputStream());
@@ -127,7 +127,7 @@ public class HttpUtil {
 		String content = HttpUtil.sendGet("http://www.tcl.com/", "key=123&v=456");
 		String fileName = "h:/tcl.txt";
 		IoUtil.saveFile(fileName, content, false);
-	
+
 		// 发送 POST 请求
 		// String sr =
 		// HttpUtil.sendPost("http://localhost:6144/Home/RequestPostString",

@@ -18,30 +18,25 @@ import com.tclshop.framework.core.web.RestApi;
 @RequestMapping("/test")
 public class TTestController {
 
-	private static final Logger log = LoggerFactory.getLogger(TTestController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TTestController.class);
 
 	@Autowired
 	private TTestSoa tTestSoa;
 
 	@RequestMapping(value = "/findByPage", method = RequestMethod.GET)
 	@CrossOrigin
-	public RestApi findByPage(
-			@RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber,
-			@RequestParam(value = "listAccount", required = false, defaultValue = "10") Integer listAccount,
-			TTest partnerWrapper) {
+	public RestApi findByPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, @RequestParam(value = "size", required = false, defaultValue = "10") Integer size, TTest tTest) {
 		RestApi result = new RestApi();
-
 		Page<TTest> pageParam = null;
 		try {
-			pageParam = tTestSoa.findByPage(partnerWrapper, pageNumber, listAccount);
+			pageParam = tTestSoa.findByPage(tTest, page, size);
 			result.setCode(200);
 			result.setData(pageParam);
 			result.setMessage("success");
-			log.info(JSON.toJSONString(pageParam));
+			logger.info(JSON.toJSONString(pageParam));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return result;
 	}
 }

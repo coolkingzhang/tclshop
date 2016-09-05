@@ -55,7 +55,7 @@ public class InvestorsContorller {
             model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "investorRelations/investor_relations";
+        return "investors/index";
     }
 
     /*
@@ -127,7 +127,7 @@ public class InvestorsContorller {
             model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "investorRelations/global_list";
+        return "investors/list";
     }
     
     /*
@@ -146,7 +146,7 @@ public class InvestorsContorller {
             model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "investorRelations/global_details";
+        return "investors/details";
     }
 
 }

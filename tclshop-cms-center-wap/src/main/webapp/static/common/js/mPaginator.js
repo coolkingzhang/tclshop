@@ -8,13 +8,8 @@
         type: "GET",
         data: {},
         timeout: 500,
-        success: null || function() {
-
-        },
-        error: null || function() {
-
-        },
     };
+
     var pageOpts = {
         startPage: 1, //start Page
         indexPage: 1, //index Page
@@ -22,7 +17,6 @@
         maxPage: 0, //max Page
         total: 10, //total number
     };
-
 
     m.pageSet = function(opts) {
         var goNextPage = 1,
@@ -90,10 +84,6 @@
         $.extend(opstions, opts);
         // dataHandle(opstions);
         mAjax = $.ajax(opstions);
-
-        opstions.success = mAjax.success;
-
-        opstions.error = mAjax.error;
     };
 
     var dataHandle = function(opstions) {
@@ -106,6 +96,39 @@
             }
         }
         return opstions;
+    };
+
+    var cssClean = {
+            "height": "",
+            "background-color": ""
+        },
+        cssLoad = {
+            "height": 450,
+            "background-color": "#FDFDFD"
+        };
+
+    m.loadpg = function(elem, state) {
+        if (state) {
+            var tempHeight = elem.height();
+            cssLoad.height = tempHeight;
+            elem.css(cssLoad);
+            elem.html("");
+        } else {
+            elem.css(cssClean);
+        }
+    };
+
+    m.mobhovr = function(elem, cssobj) {
+        elem.on("touchstart", function() {
+            elem.css(cssobj);
+        });
+        elem.on("touchend", function() {
+            elem.css({
+                "color": "",
+                "background": "",
+                "background-color": ""
+            });
+        });
     };
 
     window.mPage = m;

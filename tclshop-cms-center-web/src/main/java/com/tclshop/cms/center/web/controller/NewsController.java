@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -49,17 +51,16 @@ public class NewsController {
     	 TNews tNews = new TNews();
         try {
             model.addAttribute("title", findTitle());//标题
-            model.addAttribute("pictureFont", commonInterface.findPictureFont(tAdvertisingSoa, TAdvertisingEnum.news.getValue(), 1, 1));//头图
+            model.addAttribute("pictureFont", commonInterface.findPictureFont(tAdvertisingSoa, TAdvertisingEnum.news.getValue(), 1, 5));//头图
             model.addAttribute("viewPoint", findIndexList(TNewsEnum.otherOpinion.getValue(), null, 1, 4));//第三方观点
             model.addAttribute("videl", findIndexList(TNewsEnum.videoNews.getValue(), null, 1, 3));//视频新闻
             tNews.setStatus(1);//置顶
             tNews.setType(TNewsEnum.newMedia.getValue());
             model.addAttribute("media", tNewsSoa.findIndexData(tNews));//新媒体
         } catch (Exception e) {
-            model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "news/news_center";
+        return "news/index";
     }
 
 
@@ -74,7 +75,7 @@ public class NewsController {
     }
 
     /*
-     * 首页列表
+     * 首页
      */
     public RestApi findIndexList(
             @RequestParam(value = "type", required = true) Integer type,
@@ -91,6 +92,8 @@ public class NewsController {
         }
         pageParam = tNewsSoa.findByPage(tNews, pageNumber, listAccount).getRecords();
         result.setData(pageParam);
+        result.setCode(200);
+        result.setMessage("success");
         return result;
     }
 
@@ -122,7 +125,6 @@ public class NewsController {
             }else{
             	result = new RestApi();
             	pageParam = tNewsSoa.findByPage(tNews, pageNumber, listAccount);
-            	System.out.println(pageParam);
                 result.setCode(200);
                 result.setMessage("success");
                 result.setData(pageParam);
@@ -144,34 +146,25 @@ public class NewsController {
             @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber,
             @RequestParam(value = "listAccount", required = false, defaultValue = "10") Integer listAccount
     ) {
-        RestApi result = new RestApi();
-        Calendar   c   =   Calendar.getInstance(); 
+        RestApi result = new RestApi(); 
         Page<TNews> pageParam = null;
         TNews tNews = new TNews();
         try {
         	String  beagin = null;
         	String end = null;
         	if(!StringUtils.isEmpty(beaginTime)) {//如果开始时间参数不为null
-        		
-        	    int year  = Integer.parseInt(beaginTime.substring(0,4));
-        	    int month = Integer.parseInt(beaginTime.substring(5,7));
-        	    int day = Integer.parseInt(beaginTime.substring(8));
-        	    c.set(year,   month,   day); 
-        	    Long time   =   c.getTime().getTime();//距离1970年的毫秒数
-        	    beagin = ((Long)((time)   /   1000)).toString(); 
+        		SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd"); 
+        		Date date = format.parse(beaginTime);
+        		beagin = ((Long)(date.getTime() / 1000)).toString();
         	 }  
         	if(!StringUtils.isEmpty(endTime)) {//如果结束时间参数不为null
-         	    int year  = Integer.parseInt(endTime.substring(0,4));
-         	    int month = Integer.parseInt(endTime.substring(5,7));
-         	    int day = Integer.parseInt(endTime.substring(8));
-         	    c.set(year,   month,   day); 
-         	    Long time   =   c.getTime().getTime();//距离1970年的毫秒数
-         	    end = ((Long)((time)   /   1000)).toString(); 
+        		SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd"); 
+        		Date date = format.parse(endTime);
+        		end = ((Long)(date.getTime() / 1000)).toString(); 
          	 }
         	if(!StringUtils.isEmpty(title)){
         		tNews.setTitle(title.trim());
         	}
-        	log.info("beaginTime:"+beagin+"=======>>endTime:"+endTime);
             tNews.setType(type);
 			pageParam  = tNewsSoa.searchNews(tNews, pageNumber, listAccount, beagin, end);
             result.setCode(200);
@@ -198,10 +191,9 @@ public class NewsController {
             model.addAttribute("result", tNews);
             model.addAttribute("returnPath", tNewsTypeSoa.selectById(type));
         } catch (Exception e) {
-            model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "news/global_details";
+        return "news/details";
     }
 
 	
@@ -211,23 +203,23 @@ public class NewsController {
 
     @RequestMapping(value = "/newsList", method = RequestMethod.GET)
     public String findGlobalList(
-            Model model,
-            @RequestParam(value = "type", required = true) Integer type,
-            @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber,
-            @RequestParam(value = "listAccount", required = false, defaultValue = "10") Integer listAccount
-    ) {
+    	Model model,
+        @RequestParam(value = "type", required = true) Integer type,
+        @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber,
+        @RequestParam(value = "listAccount", required = false, defaultValue = "10") Integer listAccount
+        ){
         Page<TNews> pageParam = null;
-        try {
-            TNews tNews = new TNews();
-            tNews.setType(type);
-            pageParam = tNewsSoa.findByPage(tNews, pageNumber, listAccount);
-            model.addAttribute("result", pageParam);
-            model.addAttribute("type", type);
-        } catch (Exception e) {
-            model.addAttribute("exception", e);
-            return "errors/500";
-        }
-        return "news/global_list";
-    }
+	    try {
+	        TNews tNews = new TNews();
+	        tNews.setType(type);
+	        pageParam = tNewsSoa.findByPage(tNews, pageNumber, listAccount);
+	        model.addAttribute("result", pageParam);
+	        model.addAttribute("type", type);
+	        model.addAttribute("title", tNewsTypeSoa.selectById((long)type));
+	    } catch (Exception e) {
+	        return "errors/500";
+	    }
+	        return "news/list";
+	 }
 
 }

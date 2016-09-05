@@ -24,7 +24,7 @@
         <where>
             <include refid="condition_sql" />
         </where>
-        order by createtime desc
+        order by issue_time desc, createtime desc
     </select>
 
 </mapper>

@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/context
-          http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
@@ -47,7 +47,6 @@
 
 	<bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller" />
 	<!--信息转换 - 结束 -->
-
 	<bean id="contentNegotiationManagerFactoryBean"
 		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<property name="defaultContentType" value="text/html" />
@@ -62,8 +61,7 @@
 			</map>
 		</property>
 	</bean>
-	<bean
-		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="contentNegotiationManager">
 			<bean
 				class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
@@ -100,11 +98,10 @@
 	<!--文件上传 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="4000000" />
+		<property name="maxUploadSize" value="100000" />
 	</bean>
 
 	<mvc:annotation-driven validator="validator" />
-
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
@@ -115,7 +112,6 @@
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
-				<!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找 -->
 				<value>messages.group</value>
 			</list>
 		</property>
@@ -144,7 +140,6 @@
 		</property>
 		<!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
 		<property name="warnLogCategory" value="WARN"></property>
-
 		<!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->
 		<property name="defaultErrorView" value="errors/error"></property>
 		<!-- 默认HTTP状态码 -->

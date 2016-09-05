@@ -34,8 +34,7 @@ define(['jquery','ShowBox'],function($,ShowBox){
        init:function(){
     	   //this.bannerMenuMore(5);
     	   this.reformats();
-    	   this.tabAction();
-    	   
+    	   this.tabAction(); 
        }
    }
 });

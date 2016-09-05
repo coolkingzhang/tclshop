@@ -5,11 +5,11 @@
 	<!-- 通用查询结果列-->
     <!-- 1集团新闻，2产品新闻，3服务新闻，4社区新闻，5第三方观点，6,视频新闻，7新媒体-->
 	<sql id="Base_Column_List">
-		 id, title, shorttitle, source, keywords, description, content, recommend_news recommendNews, pic, type, comment, subjecttype, subjectid, status, recommended, r_pic rPic, r_content rContent, sort, issue_time issueTime, createtime
+		 id, title, shorttitle, source, keywords, description, content, recommend_news recommendNews, pic, type, comment, subjecttype, subjectid, status, recommended, r_pic rpic, r_content rcontent, sort, issue_time issueTime, createtime
 	</sql>
 
     <sql id="News_Page">
-         id, title, shorttitle, keywords, description, pic, type, sort, recommended, status, issue_time issueTime
+         id, title, shorttitle, keywords, description, pic, r_pic rpic, type, sort, recommended, status, issue_time issueTime
     </sql>
 
     <sql id="condition_sql">
@@ -52,6 +52,12 @@
         </if>
     </sql>
 
+    <sql id="index_condition_sql">
+        <![CDATA[
+            type < 5
+        ]]>
+    </sql>
+
     <select id="findByPage" resultType="com.tclshop.cms.center.entity.TNews">
         select <include refid="News_Page" /> from t_news
         <where>
@@ -66,6 +72,14 @@
             <include refid="condition_sql" />
         </where>
         order by status desc, sort asc, issue_time desc limit 4
+    </select>
+
+    <select id="indexData" resultType="com.tclshop.cms.center.entity.TNews">
+        select <include refid="Base_Column_List" /> from t_news
+        <![CDATA[
+            where type <= 4
+        ]]>
+        order by status desc, sort asc, issue_time desc limit #{size}
     </select>
 
     <select id="searchNews" resultType="com.tclshop.cms.center.entity.TNews">

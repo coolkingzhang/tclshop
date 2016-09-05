@@ -26,8 +26,7 @@ define(['jquery'],function($){
 				})
 
 	   },
-       init:function(){
-    	  
+       init:function(){   	  
     	   this.interactive();
        }
    }

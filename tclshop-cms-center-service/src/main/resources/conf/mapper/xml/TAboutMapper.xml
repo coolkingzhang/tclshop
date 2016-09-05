@@ -4,11 +4,11 @@
 
 	<!-- 通用查询结果列-->
 	<sql id="Base_Column_List">
-		 id, title, name, description, content, pic, r_pic rPic, url, years, type, sort, issue_time issueTime, createtime
+		 id, title, name, description, content, pic, r_pic rpic, url, years, type, sort, issue_time issueTime, createtime
 	</sql>
 
     <sql id="Page_Column_List">
-         id, title, name, description, pic, url, years, sort, type, issue_time issueTime, createtime
+         id, title, name, description, pic, r_pic rpic, url, years, sort, type, issue_time issueTime, createtime
     </sql>
 
     <sql id="condition_sql">

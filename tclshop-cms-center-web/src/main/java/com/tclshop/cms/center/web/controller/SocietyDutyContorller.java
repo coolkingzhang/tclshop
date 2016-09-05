@@ -41,9 +41,9 @@ public class SocietyDutyContorller {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
         try {
-            model.addAttribute("activity", getIndexData(11, 3));
-            model.addAttribute("fund", getIndexData(12, 5));
-            model.addAttribute("volunteer", getIndexData(13, 5));
+            model.addAttribute("activity", getIndexData(TAboutEnum.activity.getValue(), 3));
+            model.addAttribute("fund", getIndexData(TAboutEnum.hmFund.getValue(), 5));
+            model.addAttribute("volunteer", getIndexData(TAboutEnum.volunteer.getValue(), 5));
             model.addAttribute("pictureFont", commonInterface.findPictureFont(tAdvertisingSoa, TAdvertisingEnum.social.getValue(), 1, 1));// 社会责任头图
             TAbout tAbout = new TAbout();
             tAbout.setType(TAboutEnum.dutyReport.getValue());
@@ -56,7 +56,7 @@ public class SocietyDutyContorller {
             model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "socialResponsibility/social_responsibility";
+        return "responsibility/index";
     }
 
     /*
@@ -75,7 +75,7 @@ public class SocietyDutyContorller {
     	}catch(Exception e){
     		return "exception/500";
     	}
-        return "socialResponsibility/co_actionList";
+        return "responsibility/action_list";
     }
 
     /*
@@ -123,7 +123,7 @@ public class SocietyDutyContorller {
     	}catch(Exception e){
     		return "exception/500";
     	}
-        return "socialResponsibility/hm_fundList";
+        return "responsibility/hm_list";
     }
 
     /*
@@ -143,7 +143,7 @@ public class SocietyDutyContorller {
     	}catch(Exception e){
     		return "exception/500";
     	}
-        return "socialResponsibility/hm_fundList";
+        return "responsibility/hm_list";
     }
 
     /*
@@ -165,7 +165,7 @@ public class SocietyDutyContorller {
     	}catch(Exception e){
     		return "exception/500";
     	}
-        return "socialResponsibility/socialDutyList";
+        return "responsibility/duty_list";
     }
 
     /*
@@ -189,7 +189,7 @@ public class SocietyDutyContorller {
     		return "exception/500";
     	}
        
-        return "socialResponsibility/co_actionDetails";
+        return "responsibility/details";
     }
 
     // 企业公民活动主页显示（type=11）， 华萌基金主页显示（type=12），志愿者风采主页显示（type=13）, 社会责任报告（type=14）

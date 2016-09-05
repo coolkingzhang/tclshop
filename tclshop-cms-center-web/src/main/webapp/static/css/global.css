@@ -26,7 +26,7 @@ body {
 	height: 100%;
 	font-size:100%;
 	left: 0;
-	overflow-x: hidden;
+	/* overflow-x: hidden; */
 	position: relative;
 	background-color: #FFF;
 	transition-duration: .3s;
@@ -191,16 +191,16 @@ i{font-style:normal;}
 }
 .nav{
 	width: 100%;
-	/*	min-width: 1226px;
-	max-width: 1920px;*/
+	min-width: 1226px;
+	max-width: 1920px;
 	margin: 0 auto;
-	/* height: 80px; */
-	padding-top: 14px;
-	/* 	background-color: transparent;
+	/* height: 80px;  */
+	padding-top: 14px; 
+	background-color: transparent;
 	background-color: #FFF \9;
 	position: relative;
 	transform: translate3D(0px, 0px, 0px);
-	-webkit-transform: translate3D(0px, 0px, 0px); */
+	-webkit-transform: translate3D(0px, 0px, 0px); 
 }
 .head-channel .nav{
 	height: 100px;
@@ -923,7 +923,7 @@ i{font-style:normal;}
 /*::-moz-selection{background:#2fad6b; color:#fff;} 
 ::selection {background:#2fad6b; color:#fff;} */
 
-/* å…¬å…±æ ·å¼ */
+/* 氓鈥βモ�卤忙聽路氓录聫 */
 
 .bor-bott{
 	border-bottom: 1px solid #e5e5e5;
@@ -1148,7 +1148,7 @@ i{font-style:normal;}
 
 
 /*********
-* 首页侧滑第三方登录样式
+* 棣栭〉渚ф粦绗笁鏂圭櫥褰曟牱寮�
 */
 .quick-logon{
 	width: 300px;
@@ -1580,3 +1580,36 @@ i{font-style:normal;}
 body{
 	opacity: 0.6;
 }*/
+/* @media (max-height:900px) and (max-width:1440px){
+	.header{min-width: 1226px;}
+	.min-wid,.nav-bar,.cart-nav{width: 980px;}
+	.nav-bar{height: 60px; line-height: 35px; padding-top: 10px;}
+	.hea-box{margin-left:0;width: 60px;}
+	.hot{width: 108px;}
+	.saerch input{top:0;}
+	.hot-words{top:18px;}
+	.saerch .fr, .fixed .nav-bar .saerch .fr{line-height: 60px;}
+	.nav-r{margin-right: -3px;margin-left: 18px;}
+	.menu a,.fixe .menu a{font-size:14px;}
+	.menu>div{padding-left: 17px;padding-right: 16px;}
+	.nav-r span{font-size:16px;width: 30px;height: 30px; line-height:30px; margin: 0 12px 0 0;}
+	.menu{margin-right:0px;}
+	.banner .R1-text{padding-top: 212px;}
+	.R1-wrap{width: 980px;}
+	.R1-wrap .font50{margin: 26px 0 10px 0;font-size: 42px; line-height: 42px; font-weight: normal;}
+	.R1-wrap .font24{font-size: 20px; line-height: 20px;}
+	.R1-wrap .font32{font-size: 26px; margin-top: 51px;}
+	.R1-text .font32 span{font-size: 16px;}
+	.R1-text .buy{width: 152px; height: 38px; font-size: 14px; margin-top: 8px;}
+	.banner .right .moveimg{margin-top: 57px; padding-top: 64px;}
+	.banner .banner-back img{max-width: 100%;}
+	
+	.visual{margin-top: 576px;}
+	.help .min-wid{width: 980px;}
+	.help dl{ width: auto; padding-right: 60px;}
+	.help .last-r{padding-right: 0;}
+	.help dl>dt{padding-bottom: 20px;}
+	.footer>div{width:980px;}
+    .nav-r font {font-size:12px;font-weight:normal;}
+	
+} */

@@ -39,6 +39,12 @@ public class TNewsServiceImpl extends SuperServiceImpl<TNewsMapper, TNews> imple
     }
 
     @Override
+    public List<TNews> indexData(int size) {
+        List<TNews> indexData = tNewsMapper.indexData(size);
+        return indexData;
+    }
+
+    @Override
     public Page<TNews> searchNews(TNews tNews, Integer current, Integer size, String starttime, String endtime) {
         if (current == null || size == null) {
             return new Page<TNews>(0, 0);

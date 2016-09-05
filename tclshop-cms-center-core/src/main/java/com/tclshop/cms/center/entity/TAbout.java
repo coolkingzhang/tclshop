@@ -40,7 +40,7 @@ public class TAbout implements Serializable {
 
 	/**  */
 	@TableField(value = "r_pic")
-	private String rPic;
+	private String rpic;
 
 	/**  */
 	private String url;
@@ -157,12 +157,11 @@ public class TAbout implements Serializable {
 		this.createtime = createtime;
 	}
 
-	public String getrPic() {
-		return rPic;
-	}
+    public String getRpic() {
+        return rpic;
+    }
 
-	public void setrPic(String rPic) {
-		this.rPic = rPic;
-	}
-
+    public void setRpic(String rpic) {
+        this.rpic = rpic;
+    }
 }

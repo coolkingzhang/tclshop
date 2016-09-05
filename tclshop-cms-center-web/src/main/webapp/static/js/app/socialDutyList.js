@@ -29,7 +29,7 @@ define(['jquery','comm'],function($,comm){
 		   							//getDate = getDate.split(" ")[0];
 		   							str += '<ul class="huameng">'  		   								 
 		   								  +'<li class="font">'						                 
-			   			                  + records[i].title			   			                 
+			   			                  + '<a href="'+ records[i].pic +'"  target="_blank">'+records[i].title+'</a>'			   			                 
 			   		            	      +'<i>' 
 			   		            	      + getDate+"&nbsp;&nbsp;<a href='" + records[i].pic +"' class='pdfDown'></a>"
 			   		                      +'</i>'

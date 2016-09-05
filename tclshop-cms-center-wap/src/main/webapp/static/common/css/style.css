@@ -5,43 +5,65 @@
     letter-spacing: 2px;
     color: #333;
 }
+
 .abreast {
     position: relative;
     color: #333;
 }
-.abreast>a {
+
+.abreast> a {
     display: block;
 }
+
 .abreast .abreast_text {
     position: absolute;
     right: 0;
     bottom: 4px;
     padding: 0;
-    color: #D5D5D5;
+    line-height: 100%;
+    color: #BBB;
     text-align: right;
 }
+
+.colorBBB {
+    color: #BBB;
+}
+
+.setblock {
+    display: block;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
 .get_more {
     padding: .7rem 0;
     text-align: center;
     color: #0397FD;
     cursor: pointer;
 }
+
 .get_more::after {
     content: " ";
     background: ;
 }
+
 .lineh09 {
     line-height: .9rem;
 }
+
 .icf {
     font-family: iconfont-tcl;
     font-size: .5rem;
     font-weight: 900;
     margin: 0 .25rem
 }
+
 .clsicf {
     margin: 0;
 }
+
 .cut_space::after {
     content: ' ';
     display: block;
@@ -49,18 +71,26 @@
     height: .5rem;
     background-color: #F9F9F9;
 }
+
+.dcac_text> li {
+    padding: 0 0 .5rem 0;
+    line-height: 1.5em;
+}
+
 .cls_flex> li, .cls_flex> .swiper-slide {
-    -webkit-transform-style: preserve-3d;
+    /*-webkit-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -ms-flex: 1 1 auto;
     -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
-    flex-shrink: 1;
+    flex-shrink: 1;*/
 }
+
 .rj_more, .rj_more> a {
     display: block;
 }
+
 @font-face {
     font-family: 'iconfont-tcl';
     src: url('iconfont/iconfont.eot');

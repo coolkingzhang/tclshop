@@ -25,6 +25,8 @@ public interface TNewsSoa {
 
     public List<TNews> findIndexData(TNews tNews);
 
+    public List<TNews> indexData(int size);
+
     public Page<TNews> searchNews(TNews tNews, Integer current, Integer size, String starttime, String endtime);
 
 }

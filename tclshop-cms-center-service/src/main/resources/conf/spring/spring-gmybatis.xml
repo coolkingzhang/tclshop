@@ -16,7 +16,7 @@
 		<!-- 配置初始化大小、最小、最大 -->
 		<property name="initialSize" value="1" />
 		<property name="minIdle" value="0" />
-		<property name="maxActive" value="4" />
+		<property name="maxActive" value="8" />
 		<property name="testWhileIdle" value="true" />
 		<!-- 这里建议配置为true ,防止取到的连接不可用 -->
 		<property name="testOnBorrow" value="true" />

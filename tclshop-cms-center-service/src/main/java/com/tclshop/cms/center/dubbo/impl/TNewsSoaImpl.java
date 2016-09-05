@@ -57,6 +57,12 @@ public class TNewsSoaImpl implements TNewsSoa {
     }
 
     @Override
+    public List<TNews> indexData(int size) {
+        List<TNews> indexData = itNewsService.indexData(size);
+        return indexData;
+    }
+
+    @Override
     public Page<TNews> searchNews(TNews tNews, Integer current, Integer size, String starttime, String endtime) {
         Page<TNews> page = itNewsService.searchNews(tNews, current, size, starttime, endtime);
         return page;

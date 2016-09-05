@@ -31,7 +31,7 @@ public class TDevelopment implements Serializable {
 
 	/** 内页封面 */
 	@TableField(value = "b_pic")
-	private String bPic;
+	private String bpic;
 
 	/**  */
 	private Date createtime;
@@ -68,12 +68,11 @@ public class TDevelopment implements Serializable {
 		this.createtime = createtime;
 	}
 
-	public String getbPic() {
-		return bPic;
-	}
+    public String getBpic() {
+        return bpic;
+    }
 
-	public void setbPic(String bPic) {
-		this.bPic = bPic;
-	}
-
+    public void setBpic(String bpic) {
+        this.bpic = bpic;
+    }
 }

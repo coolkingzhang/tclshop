@@ -16,13 +16,13 @@ import java.io.IOException;
 public class StartApplication {
 
 	public static void main(String[] args) {
-		System.out.println("启动开始");
+		// System.out.println("启动开始");
 		SpringApplication.run(StartApplication.class, args);
 		try {
-			System.out.println("启动成功,按任意键关闭");
+			// System.out.println("启动成功,按任意键关闭");
 			System.in.read();
 		} catch (IOException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 	}
 }

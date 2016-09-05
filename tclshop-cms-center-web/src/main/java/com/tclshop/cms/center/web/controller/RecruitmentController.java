@@ -60,7 +60,7 @@ public class RecruitmentController {
             model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "recruitment/recruitment";
+        return "recruitment/index";
     }
 
     /*
@@ -103,7 +103,7 @@ public class RecruitmentController {
             model.addAttribute("exception", e);
             return "errors/500";
         }
-        return "recruitment/global_details";
+        return "recruitment/details";
     }
 
     /*

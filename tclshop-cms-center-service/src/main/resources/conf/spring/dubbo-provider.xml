@@ -4,16 +4,16 @@
             http://www.springframework.org/schema/beans/spring-beans.xsd  
             http://code.alibabatech.com/schema/dubbo  
             http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+        
 	<!-- http://www.tuicool.com/articles/NVJbUn -->
 	<!-- 提供方应用信息，用于计算依赖关系 -->
 	<dubbo:application name="tclshop-cms-center-service" />
-
 	<!-- 使用zookeeper注册中心暴露服务地址 -->
 	<dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" />
 	<dubbo:provider delay="-1" timeout="6000" retries="0" threads="100" />
 	<!-- 用dubbo协议在20871端口暴露服务 -->
 	<!-- <dubbo:protocol name="dubbo" port="20880" host="10.68.244.196" /> -->
-	<dubbo:protocol name="dubbo" port="20882" />
+	<dubbo:protocol name="dubbo" port="20880" />
 	<dubbo:service interface="com.tclshop.cms.center.dubbo.TTestSoa" ref="tTestSoa" version="1.0">
 		<dubbo:method name="selectById" timeout="500" retries="2" loadbalance="leastactive" />
 	</dubbo:service>

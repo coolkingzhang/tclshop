@@ -31,7 +31,7 @@ define(['jquery','comm'],function($,comm){
 		   								  +'<td>'+ records[i].company +'</td>'
 		   								  +'<td>'+ records[i].address +'</td>'
 		   								  +'<td>'+ getDate +'</td>'
-		   								  +'<td><a href="'+records[i].url+'" class="submit">我要应聘 </a></td>'
+		   								  +'<td><a href="'+records[i].url+'" target="_blank" class="submit">我要应聘 </a></td>'
 			   			                  +'</tr>'
 		   						}
 		   						
